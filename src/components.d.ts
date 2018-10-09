@@ -52,10 +52,12 @@ export namespace Components {
   interface ZijderouteCalendar {
     'calendarId': string;
     'serviceAccountEmail': string;
+    'tokenSignUrl': string;
   }
   interface ZijderouteCalendarAttributes extends StencilHTMLAttributes {
     'calendarId'?: string;
     'serviceAccountEmail'?: string;
+    'tokenSignUrl'?: string;
   }
 
   interface ZijderouteArrowLeft {

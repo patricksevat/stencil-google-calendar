@@ -37,7 +37,7 @@ In order to actually access the calendar events you need to [share your calendar
 
 This is your back-end route which generates a signed RS-256 [JWT](https://jwt.io/) using your `service-account`'s private key.
 
-A very simple examples to do this using NodeJS and Express can be found under `/server`. 
+A very simple examples to do this using NodeJS and Express can be found under `/server`. Here you can also find the schema the JWT payload has to adhere to.
 
 *NOTE: Please add your own `/server/secrets.json` containing your "PRIVATE_KEY" if you'd like to use this example*
 

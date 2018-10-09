@@ -1,0 +1,82 @@
+@import "./variables";
+
+:host {
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+
+  [style^='--aspect-ratio']::before {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 0;
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }
+
+  .calendar {
+    width: 350px;
+    overflow: hidden;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    border-radius: $md-radius;
+    background: #fff;
+
+    &__header {
+      display: flex;
+      padding: $md-padding;
+      height: 72px;
+      background: $calendar-blue;
+      width: 100%;
+      box-sizing: border-box;
+
+      &-content {
+        display: flex;
+        font-size: 16px;
+        height: 56px;
+        flex-direction: column;
+        width: 100%;
+
+        &-headline {
+          margin: 0;
+          color: #fff;
+          font-weight: 600;
+          line-height: 32px;
+        }
+
+        &-subline {
+          margin: 0;
+          font-weight: 500;
+          color: #fff;
+          display: flex;
+          flex-direction: row;
+          align-self: center;
+
+          h4 {
+            margin: 0;
+            display: flex;
+            align-self: center;
+          }
+        }
+      }
+    }
+
+    &__divider {
+      margin: 0;
+      border: 1px solid #fff
+    }
+  }
+
+  zijderoute-calendar-icon {
+    height: 40px;
+    width: 40px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+}
+
+

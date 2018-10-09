@@ -1,0 +1,37 @@
+@import "../variables";
+
+:host {
+  .calendar-details {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      padding: $md-padding;
+      padding-bottom: 16px;
+      transition: height 0.5s cubic-bezier(0.0, 0.0, 0.2, 1);
+
+      &--empty {
+        height: 12px;
+      }
+    }
+  }
+
+  .event-detail {
+    &__container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &__body {
+      margin-bottom: 8px;
+    }
+
+    &__data {
+      font-size: 12px;
+      margin: 0;
+
+      &--title {
+        font-weight: 600;
+      }
+    }
+  }
+}

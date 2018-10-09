@@ -1,0 +1,4 @@
+{
+  "SCOPE": "https://www.googleapis.com/auth/calendar.readonly",
+  "aud": "https://www.googleapis.com/oauth2/v4/token"
+}

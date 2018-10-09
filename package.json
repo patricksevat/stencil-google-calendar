@@ -1,0 +1,48 @@
+{
+  "name": "stencil-google-calendar",
+  "version": "0.9.0",
+  "description": "A StencilJS Calendar Webcomponent with Google Calendar integration",
+  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "start-server": "node --experimental-modules server/index.mjs",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@stencil/sass": "^0.1.1",
+    "@stencil/core": "^0.13.2",
+    "@types/jest": "23.3.2",
+    "@types/puppeteer": "1.6.0",
+    "body-parser": "^1.18.3",
+    "date-fns": "^1.29.0",
+    "express": "^4.16.3",
+    "jest": "23.5.0",
+    "jest-environment-node": "23.4.0",
+    "jsonwebtoken": "^8.3.0",
+    "pixelmatch": "4.0.2",
+    "puppeteer": "1.7.0",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+origin https://github.com/patricksevat/stencil-google-calendar.git"
+  },
+  "author": "Patrick Sevat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patricksevat/stencil-google-calendar"
+  },
+  "homepage": "https://github.com/patricksevat/stencil-google-calendar"
+}

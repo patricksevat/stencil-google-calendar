@@ -14,14 +14,14 @@
     "start": "stencil build --dev --watch --serve",
     "start-server": "node --experimental-modules server/index.mjs",
     "test": "stencil test --spec --e2e",
+    "test.unit": "stencil test --spec",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@stencil/sass": "^0.1.1",
     "@stencil/core": "^0.13.2",
+    "@stencil/sass": "^0.1.1",
     "@types/jest": "23.3.2",
     "@types/puppeteer": "1.6.0",
     "body-parser": "^1.18.3",

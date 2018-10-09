@@ -27,8 +27,8 @@ export class ZijderouteCalendar {
   @State() events: CalendarEvents = {};
   @State() selectedDay: DayDescriptor;
 
-  handleMonthChange (num) {
-    this.firstOfMonthDate = addMonths(this.firstOfMonthDate, num ? 1 : -1);
+  handleMonthChange (bool) {
+    this.firstOfMonthDate = addMonths(this.firstOfMonthDate, bool ? 1 : -1);
     this.selectedYear = this.firstOfMonthDate.getFullYear();
 
     this.retrieveEvents()
@@ -37,7 +37,7 @@ export class ZijderouteCalendar {
 
   @Listen('emitSelectDayEvent')
   selectDay (ev: CustomEvent) {
-    const day = ev.detail;
+    const day: DayDescriptor = ev.detail;
     if (this.selectedDay && this.selectedDay.formatted === day.formatted) {
       this.selectedDay = null;
     } else {

@@ -17,6 +17,19 @@ import {
 
 export namespace Components {
 
+  interface ZijderouteCalendar {
+    'calendarId': string;
+    'includePrivateEvents': string;
+    'serviceAccountEmail': string;
+    'tokenSignUrl': string;
+  }
+  interface ZijderouteCalendarAttributes extends StencilHTMLAttributes {
+    'calendarId'?: string;
+    'includePrivateEvents'?: string;
+    'serviceAccountEmail'?: string;
+    'tokenSignUrl'?: string;
+  }
+
   interface ZijderouteCalendarCell {
     'day': DayDescriptor;
     'events': CalendarEvent[];
@@ -49,19 +62,6 @@ export namespace Components {
     'selected'?: DayDescriptor;
   }
 
-  interface ZijderouteCalendar {
-    'calendarId': string;
-    'includePrivateEvents': string;
-    'serviceAccountEmail': string;
-    'tokenSignUrl': string;
-  }
-  interface ZijderouteCalendarAttributes extends StencilHTMLAttributes {
-    'calendarId'?: string;
-    'includePrivateEvents'?: string;
-    'serviceAccountEmail'?: string;
-    'tokenSignUrl'?: string;
-  }
-
   interface ZijderouteArrowLeft {
     'fillColor': string;
   }
@@ -88,25 +88,31 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    'ZijderouteCalendar': Components.ZijderouteCalendar;
     'ZijderouteCalendarCell': Components.ZijderouteCalendarCell;
     'ZijderouteCalendarDetails': Components.ZijderouteCalendarDetails;
     'ZijderouteCalendarGrid': Components.ZijderouteCalendarGrid;
-    'ZijderouteCalendar': Components.ZijderouteCalendar;
     'ZijderouteArrowLeft': Components.ZijderouteArrowLeft;
     'ZijderouteArrowRight': Components.ZijderouteArrowRight;
     'ZijderouteCalendarIcon': Components.ZijderouteCalendarIcon;
   }
 
   interface StencilIntrinsicElements {
+    'zijderoute-calendar': Components.ZijderouteCalendarAttributes;
     'zijderoute-calendar-cell': Components.ZijderouteCalendarCellAttributes;
     'zijderoute-calendar-details': Components.ZijderouteCalendarDetailsAttributes;
     'zijderoute-calendar-grid': Components.ZijderouteCalendarGridAttributes;
-    'zijderoute-calendar': Components.ZijderouteCalendarAttributes;
     'zijderoute-arrow-left': Components.ZijderouteArrowLeftAttributes;
     'zijderoute-arrow-right': Components.ZijderouteArrowRightAttributes;
     'zijderoute-calendar-icon': Components.ZijderouteCalendarIconAttributes;
   }
 
+
+  interface HTMLZijderouteCalendarElement extends Components.ZijderouteCalendar, HTMLStencilElement {}
+  var HTMLZijderouteCalendarElement: {
+    prototype: HTMLZijderouteCalendarElement;
+    new (): HTMLZijderouteCalendarElement;
+  };
 
   interface HTMLZijderouteCalendarCellElement extends Components.ZijderouteCalendarCell, HTMLStencilElement {}
   var HTMLZijderouteCalendarCellElement: {
@@ -124,12 +130,6 @@ declare global {
   var HTMLZijderouteCalendarGridElement: {
     prototype: HTMLZijderouteCalendarGridElement;
     new (): HTMLZijderouteCalendarGridElement;
-  };
-
-  interface HTMLZijderouteCalendarElement extends Components.ZijderouteCalendar, HTMLStencilElement {}
-  var HTMLZijderouteCalendarElement: {
-    prototype: HTMLZijderouteCalendarElement;
-    new (): HTMLZijderouteCalendarElement;
   };
 
   interface HTMLZijderouteArrowLeftElement extends Components.ZijderouteArrowLeft, HTMLStencilElement {}
@@ -151,20 +151,20 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'zijderoute-calendar': HTMLZijderouteCalendarElement
     'zijderoute-calendar-cell': HTMLZijderouteCalendarCellElement
     'zijderoute-calendar-details': HTMLZijderouteCalendarDetailsElement
     'zijderoute-calendar-grid': HTMLZijderouteCalendarGridElement
-    'zijderoute-calendar': HTMLZijderouteCalendarElement
     'zijderoute-arrow-left': HTMLZijderouteArrowLeftElement
     'zijderoute-arrow-right': HTMLZijderouteArrowRightElement
     'zijderoute-calendar-icon': HTMLZijderouteCalendarIconElement
   }
 
   interface ElementTagNameMap {
+    'zijderoute-calendar': HTMLZijderouteCalendarElement;
     'zijderoute-calendar-cell': HTMLZijderouteCalendarCellElement;
     'zijderoute-calendar-details': HTMLZijderouteCalendarDetailsElement;
     'zijderoute-calendar-grid': HTMLZijderouteCalendarGridElement;
-    'zijderoute-calendar': HTMLZijderouteCalendarElement;
     'zijderoute-arrow-left': HTMLZijderouteArrowLeftElement;
     'zijderoute-arrow-right': HTMLZijderouteArrowRightElement;
     'zijderoute-calendar-icon': HTMLZijderouteCalendarIconElement;

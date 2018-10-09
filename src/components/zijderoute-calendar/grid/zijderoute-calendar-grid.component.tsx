@@ -24,7 +24,7 @@ export class ZijderouteCalendarGrid {
         if (i === 0) {
           cells.push(headerCell(this.weekDays[j - 1]));
         } else {
-          const day: DayDescriptor = getDayObject({
+          const day: DayDescriptor = this.getDayObject({
             date: this.date,
             week: i - 1,
             weekDayNum: j,
@@ -42,20 +42,20 @@ export class ZijderouteCalendarGrid {
 
     return cells;
   }
-}
 
-function getDayObject({ date, week, weekDayNum }) : DayDescriptor {
-  const remainingDaysInPrevMonth: number = getDay(date); // 3
-  const cellNumber = week * 7 + weekDayNum;
-  const dayDate = addDays(date, cellNumber - remainingDaysInPrevMonth);
+  getDayObject ({ date, week, weekDayNum }) : DayDescriptor {
+    const remainingDaysInPrevMonth: number = getDay(date);
+    const cellNumber = week * 7 + weekDayNum;
+    const dayDate = addDays(date, cellNumber - remainingDaysInPrevMonth);
 
-  return {
-    number: getDate(dayDate),
-    isToday: isToday(dayDate),
-    isPrevMonth: differenceInCalendarMonths(dayDate, date) === -1,
-    isNextMonth: differenceInCalendarMonths(dayDate, date) === 1,
-    formatted: format(dayDate, 'YYYY-MM-DD'),
-  };
+    return {
+      number: getDate(dayDate),
+      isToday: isToday(dayDate),
+      isPrevMonth: differenceInCalendarMonths(dayDate, date) === -1,
+      isNextMonth: differenceInCalendarMonths(dayDate, date) === 1,
+      formatted: format(dayDate, 'YYYY-MM-DD'),
+    };
+  }
 }
 
 function getLocaleWeekdays(date: Date) {

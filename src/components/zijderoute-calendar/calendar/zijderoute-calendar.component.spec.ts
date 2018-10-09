@@ -29,17 +29,18 @@ describe('<zijderoute-calendar>', () => {
     const component = new ZijderouteCalendar();
     component.retrieveEvents = jest.fn(() =>
       new Promise((resolve) => resolve()));
+    const mockFn = component.retrieveEvents as jest.Mock;
 
     it('should call retrieveEvents on load', () => {
-      expect(component.retrieveEvents.mock.calls[0]).toBeUndefined();
+      expect(mockFn.mock.calls[0]).toBeUndefined();
       component.componentWillLoad();
-      expect(component.retrieveEvents.mock.calls[0]).toBeDefined();
+      expect(mockFn.mock.calls[0]).toBeDefined();
     });
 
     it('should call retrieveEvents on handleMonthChange()', () => {
-      expect(component.retrieveEvents.mock.calls[1]).toBeUndefined();
+      expect(mockFn.mock.calls[1]).toBeUndefined();
       component.handleMonthChange(1);
-      expect(component.retrieveEvents.mock.calls[1]).toBeDefined();
+      expect(mockFn.mock.calls[1]).toBeDefined();
     });
   });
 

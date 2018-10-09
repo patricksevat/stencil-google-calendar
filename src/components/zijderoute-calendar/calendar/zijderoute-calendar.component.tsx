@@ -4,8 +4,8 @@ import {
   endOfMonth,
 } from 'date-fns';
 
-import { CalendarEvent, CalendarEvents, DayDescriptor, TGetCalendarEventOptions } from './calendar.types';
-import { getCalendarEvents } from './google-calendar-integration';
+import { CalendarEvent, CalendarEvents, DayDescriptor, TGetCalendarEventOptions } from '../calendar.types';
+import { getCalendarEvents } from '../google-calendar-integration';
 
 @Component({
   tag: 'zijderoute-calendar',

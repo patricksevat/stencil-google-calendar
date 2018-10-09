@@ -18,6 +18,10 @@ export class ZijderouteCalendar {
   colors: string[] = ['#cddc3a', '#ffbf00', '#9417aa'];
   localeOptions = { month: 'long' };
 
+  @Prop() serviceAccountEmail: string;
+  @Prop() calendarId: string;
+  @Prop() tokenSignUrl: string;
+
   @State() firstOfMonthDate: Date = new Date(`${this.selectedYear}-${this.date.getMonth() + 1}`);
   @State() events: CalendarEvents = {};
   @State() selectedDay: DayDescriptor;
@@ -30,7 +34,7 @@ export class ZijderouteCalendar {
     .catch(console.error);
   }
 
-  @Listen('selectDay')
+  @Listen('emitSelectDayEvent')
   selectDay (ev: CustomEvent) {
     const day = ev.detail;
     if (this.selectedDay && this.selectedDay.formatted === day.formatted) {
@@ -42,7 +46,13 @@ export class ZijderouteCalendar {
 
   retrieveEvents (): Promise<void> {
     const { calendarId, serviceAccountEmail, firstOfMonthDate } = this;
-    return getCalendarEvents(calendarId, serviceAccountEmail, firstOfMonthDate, endOfMonth(firstOfMonthDate))
+    return getCalendarEvents({
+      calendarId,
+      serviceAccountEmail,
+      firstOfMonthDate,
+      endOfMonthDate: endOfMonth(firstOfMonthDate),
+      backEndUrl: this.tokenSignUrl,
+    })
     .then((events) => {
       Object.keys(events).forEach((key) => {
         events[key].forEach((calendarEvent: CalendarEvent, index) => {
@@ -52,9 +62,6 @@ export class ZijderouteCalendar {
       this.events = events;
     });
   }
-
-  @Prop() serviceAccountEmail: string;
-  @Prop() calendarId: string;
 
   componentWillLoad(): void {
     this.retrieveEvents()

@@ -32,3 +32,11 @@ export type StoredToken = {
   exp: number,
   token: string,
 };
+
+export type TGetCalendarEventOptions = {
+  calendarId: string,
+  serviceAccountEmail: string,
+  firstOfMonthDate: Date,
+  endOfMonthDate: Date,
+  backEndUrl: string,
+};

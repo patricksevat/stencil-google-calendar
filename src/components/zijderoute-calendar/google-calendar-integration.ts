@@ -1,11 +1,20 @@
-import { CalendarEvents, StoredToken, VISIBILITY_TYPES } from './calendar.types';
+import { CalendarEvents, StoredToken, VISIBILITY_TYPES, TGetCalendarEventOptions } from './calendar.types';
 import { format } from 'date-fns';
 
-export function getCalendarEvents(id: string, email: string, start: Date, end: Date): Promise<CalendarEvents> {
-  return getGoogleAccessToken(email)
+export function getCalendarEvents({
+  calendarId: id,
+  serviceAccountEmail,
+  firstOfMonthDate,
+  endOfMonthDate,
+  backEndUrl,
+}: TGetCalendarEventOptions): Promise<CalendarEvents> {
+  return getGoogleAccessToken({
+    serviceAccountEmail,
+    backEndUrl,
+  })
   .then((accessToken) => {
-    const startISO = start.toISOString();
-    const endISO = end.toISOString();
+    const startISO = firstOfMonthDate.toISOString();
+    const endISO = endOfMonthDate.toISOString();
     const baseUrl = `https://www.googleapis.com/calendar/v3/calendars/${id}/events`;
     const queryParams = `?timeMin=${startISO}&timeMax=${endISO}`;
     return fetch(baseUrl + queryParams, {
@@ -34,14 +43,14 @@ export function getCalendarEvents(id: string, email: string, start: Date, end: D
   });
 }
 
-export function getGoogleAccessToken(serviceAccountEmail) {
+export function getGoogleAccessToken({ serviceAccountEmail, backEndUrl = 'http://localhost:3000/getToken' }) {
   const storedToken: StoredToken = JSON.parse(localStorage.getItem('googleAccessToken')) || null;
 
   if (storedToken && storedToken.exp > Date.now()) {
     return Promise.resolve(storedToken.token);
   }
 
-  return fetch(`http://localhost:3000/getToken?serviceAccountEmail=${serviceAccountEmail}`)
+  return fetch(`${backEndUrl}?serviceAccountEmail=${serviceAccountEmail}`)
   .then(res => res.json())
   .then(({ data }) => fetch('https://www.googleapis.com/oauth2/v4/token', {
     method: 'POST',

@@ -1,5 +1,0 @@
-export var VISIBILITY_TYPES;
-(function (VISIBILITY_TYPES) {
-    VISIBILITY_TYPES["PRIVATE"] = "private";
-    VISIBILITY_TYPES["PUBLIC"] = "public";
-})(VISIBILITY_TYPES || (VISIBILITY_TYPES = {}));

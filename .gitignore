@@ -26,3 +26,4 @@ UserInterfaceState.xcuserstate
 
 stencil.config.js
 server/secrets.json
+src/**/*.js

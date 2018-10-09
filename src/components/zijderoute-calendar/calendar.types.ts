@@ -39,4 +39,5 @@ export type TGetCalendarEventOptions = {
   firstOfMonthDate: Date,
   endOfMonthDate: Date,
   backEndUrl: string,
+  includePrivateEvents: string,
 };

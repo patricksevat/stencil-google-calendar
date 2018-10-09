@@ -7,6 +7,7 @@ export function getCalendarEvents({
   firstOfMonthDate,
   endOfMonthDate,
   backEndUrl,
+  includePrivateEvents,
 }: TGetCalendarEventOptions): Promise<CalendarEvents> {
   return getGoogleAccessToken({
     serviceAccountEmail,
@@ -27,7 +28,7 @@ export function getCalendarEvents({
   .then(({ items }) => {
     return items.reduce(
       (acc, item) => {
-        if (item.visibility === VISIBILITY_TYPES.PUBLIC) {
+        if (includePrivateEvents || item.visibility === VISIBILITY_TYPES.PUBLIC) {
           const startFormatted = format(new Date(item.start.dateTime), 'YYYY-MM-DD');
           const endFormatted = format(new Date(item.end.dateTime), 'YYYY-MM-DD');
 

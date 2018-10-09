@@ -4,7 +4,7 @@ import {
   endOfMonth,
 } from 'date-fns';
 
-import { CalendarEvent, CalendarEvents, DayDescriptor } from './calendar.types';
+import { CalendarEvent, CalendarEvents, DayDescriptor, TGetCalendarEventOptions } from './calendar.types';
 import { getCalendarEvents } from './google-calendar-integration';
 
 @Component({
@@ -21,6 +21,7 @@ export class ZijderouteCalendar {
   @Prop() serviceAccountEmail: string;
   @Prop() calendarId: string;
   @Prop() tokenSignUrl: string;
+  @Prop() includePrivateEvents: string;
 
   @State() firstOfMonthDate: Date = new Date(`${this.selectedYear}-${this.date.getMonth() + 1}`);
   @State() events: CalendarEvents = {};
@@ -45,14 +46,16 @@ export class ZijderouteCalendar {
   }
 
   retrieveEvents (): Promise<void> {
-    const { calendarId, serviceAccountEmail, firstOfMonthDate } = this;
-    return getCalendarEvents({
+    const { calendarId, serviceAccountEmail, firstOfMonthDate, includePrivateEvents } = this;
+    const options: TGetCalendarEventOptions = {
       calendarId,
       serviceAccountEmail,
       firstOfMonthDate,
       endOfMonthDate: endOfMonth(firstOfMonthDate),
       backEndUrl: this.tokenSignUrl,
-    })
+      includePrivateEvents,
+    };
+    return getCalendarEvents(options)
     .then((events) => {
       Object.keys(events).forEach((key) => {
         events[key].forEach((calendarEvent: CalendarEvent, index) => {

@@ -13,8 +13,12 @@ This Web Component is built using [StencilJS](https://stenciljs.com/).
   service-account-email="{YOUR_GOOGLE_SERVICE_ACCOUNT_EMAIL_ADRESS}"
   calendar-id="{YOUR_GOOGLE_CALENDAR_EMAIL_ADRESS}"
   token-sign-url="{YOUR_BACK_END_URL}"
+  include-public-events=""
 />
 ```
+
+`token-sign-url` defaults to http://localhost:3000 which is used by the `npm run start-server` example
+`include-public-events` defaults to `''` which means false. Please by advised that `"false"` will evaluate to true
 
 ### service-account-email
 
